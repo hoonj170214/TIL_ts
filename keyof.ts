@@ -35,3 +35,5 @@ interface Example {
     (): void;
   };
 }
+
+// 등록된 파일 이름 변경 테스트
