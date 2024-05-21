@@ -36,4 +36,17 @@ interface Example {
   };
 }
 
-// 등록된 파일 이름 변경 테스트
+/** 매핑된 객체 타입
+ * 매핑된 객체 타입은 기존의 다른 타입으로부터 새로운 객체 속성을 만들어내는 타입
+ * 인터페이스에서는 못쓴다. 타입 별칭에서만 사용할 수 있다.
+ * in 연산자 오른쪽에는 유니언 타입이 와야 한다.
+ * 아래 예시에는 
+ * type HelloAndHi = {
+    hello: string;
+    hi: string;
+}
+가 된다.
+ */
+type HelloAndHi = {
+  [key in 'hello' | 'hi']: string;
+};
