@@ -51,5 +51,54 @@ type HelloAndHi = {
   [key in 'hello' | 'hi']: string;
 };
 
-// 수정된 파일 되돌리기 테스트
-// 빈 커밋 테스트
+/** 기존 객체 타입을 복사하는 코드.
+ * 아래 copy는 Original 과 같은 타입이 됨.
+ */
+interface Original {
+  name: string;
+  age: number;
+  married: boolean;
+}
+
+type copy = {
+  [key in keyof Original]: Original[key];
+};
+
+/** 튜플, 배열도 기존 타입을 복사할 수 있음 */
+// 튜플
+type Tuple = [1, 2, 3];
+
+type CopyTuple = {
+  [key in keyof Tuple]: Tuple[key];
+};
+
+const copyTuple: CopyTuple = [1, 2, 3];
+
+type NumArr = number[];
+type CopyNumArr = {
+  [key in keyof NumArr]: NumArr[key];
+};
+
+const copyNumArr: CopyNumArr = [1, 4, 6];
+
+/** 수식어 붙이거나 빼서 복사하기 */
+interface OriginalObj {
+  name: string;
+  age: number;
+  married: boolean;
+}
+
+type CopyObj = {
+  readonly [key in keyof OriginalObj]?: OriginalObj[key];
+};
+
+interface OriginalObj2 {
+  readonly name?: string;
+  readonly age?: number;
+  readonly married?: boolean;
+}
+
+/** readonly, 옵셔널을 빼고, Capitalize로 키 첫글자를 대문자로 바꿔서 복사 */
+type CopyObj2 = {
+  -readonly [key in keyof OriginalObj2 as Capitalize<key>]-?: OriginalObj2[key];
+};
