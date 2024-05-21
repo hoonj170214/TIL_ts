@@ -50,3 +50,5 @@ interface Example {
 type HelloAndHi = {
   [key in 'hello' | 'hi']: string;
 };
+
+// 수정된 파일 되돌리기 테스트
