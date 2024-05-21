@@ -102,3 +102,34 @@ interface OriginalObj2 {
 type CopyObj2 = {
   -readonly [key in keyof OriginalObj2 as Capitalize<key>]-?: OriginalObj2[key];
 };
+
+/** 타입 상속하기.
+ * 인터페이스가 타입별칭을 상속가능.
+ * 타입별칭이 인터페이스를 상속가능.
+ */
+interface Animal {
+  name: string;
+}
+interface Dog extends Animal {
+  bark(): void;
+}
+
+type Animal2 = {
+  name: string;
+};
+
+type Dog2 = Animal2 & {
+  bark(): void;
+};
+
+/** 상속할때 부모 속성의 타입을 변경가능 */
+interface Merge {
+  one: string;
+  two: string;
+}
+
+// 그냥 123으로 하면 오류남.  string을 number에 할당할 수 없음.
+interface Merge2 extends Merge {
+  one: 'h' | 'w';
+  two: '123';
+}
